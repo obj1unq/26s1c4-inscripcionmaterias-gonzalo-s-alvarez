@@ -1,0 +1,22 @@
+import example.*
+
+const programacion = new Carrera()
+
+const medicina = new Carrera()
+
+const matematica1 = new Materia(carrera = programacion)
+
+const objetos1 = new Materia(carrera = programacion)
+
+const roque = new Estudiante(carreras = #{programacion, medicina})
+
+test "Roque registra una materia aprobada" {
+  roque.registrarMateriaAprobada(matematica1, 8)
+  roque.registrarMateriaAprobada(objetos1, 9)
+  assert.that(roque.tieneAprobada(objetos1))
+}
+
+test "Roque no puede registrar dos veces la misma materia" {
+  roque.registrarMateriaAprobada(matematica1, 8)
+  assert.throwsException({ roque.registrarMateriaAprobada(matematica1, 10) })
+}
