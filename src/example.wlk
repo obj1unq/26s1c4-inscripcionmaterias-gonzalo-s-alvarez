@@ -26,4 +26,15 @@ class Estudiante {
 	method tieneAprobada(materia) = historialAprobadas.any(
 		{ aprobacion => aprobacion.materia() == materia }
 	)
+	
+	method cantidadMateriasAprobadas() = historialAprobadas.size()
+	
+	method promedio() {
+		const promedioCalculado = if (historialAprobadas.isEmpty()) 0
+		                          else historialAprobadas.sum(
+		                          		{ aprobacion => aprobacion.nota() }
+		                          	) / self.cantidadMateriasAprobadas()
+		
+		return promedioCalculado
+	}
 }
