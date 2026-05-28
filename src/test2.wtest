@@ -1,0 +1,22 @@
+import example.*
+
+const programacion = new Carrera()
+const matematica1 = new Materia(carrera = programacion)
+const objetos1 = new Materia(carrera = programacion)
+const objetos2 = new Materia(carrera = programacion)
+
+const roque = new Estudiante(carreras = #{programacion})
+
+test "Un estudiante sin materias aprobadas tiene cantidad 0 y promedio 0" {
+    assert.equals(0, roque.cantidadMateriasAprobadas())
+    assert.equals(0, roque.promedio())
+}
+
+test "Cálculo correcto de cantidad de aprobadas y promedio" {
+    roque.registrarMateriaAprobada(matematica1, 8)
+    roque.registrarMateriaAprobada(objetos1, 10)
+    assert.equals(2, roque.cantidadMateriasAprobadas())
+    assert.equals(9, roque.promedio())
+    assert.that(roque.tieneAprobada(matematica1))
+    assert.notThat(roque.tieneAprobada(objetos2))
+}
